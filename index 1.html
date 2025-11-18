@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tidi's Fashion – Luxury African couture: bridal, traditional & kids wear.">
+  <title>Tidi's Fashion</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7B2CBF',
+            secondary: '#000000',
+            accent: '#FFFFFF',
+            highlight: '#A162F7'
+          },
+          fontFamily: {
+            heading: ['Playfair Display', 'serif'],
+            body: ['Lato', 'sans-serif'],
+            cta: ['Montserrat', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+    .fade-in-up { animation: fadeInUp 0.8s ease forwards; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-600 { animation-delay: 0.6s; }
+
+    .hero { height: 100vh; min-height: 560px; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+    .hero-left, .hero-right { position: relative; overflow: hidden; }
+    .hero-video, .hero-img { position: absolute; width: 120%; height: 120%; object-fit: cover; transform: translate3d(0,0,0); transition: transform 0.1s linear; }
+    .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(123,44,191,0.5), rgba(0,0,0,0.7)); pointer-events: none; }
+    .hero-content { position: relative; z-index: 10; padding: 2rem; max-width: 720px; }
+    @media(max-width:900px){.hero { grid-template-columns:1fr; } .hero-right { display:none; }}
+  </style>
+</head>
+<body class="font-body text-gray-900 antialiased">
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-transparent transition-all duration-300">
+  <div class="container mx-auto flex justify-between items-center px-6 py-4">
+    <a href="#"><img src="assets/images/logo.png" alt="Tidi's Fashion Logo" class="h-12"></a>
+    <ul class="hidden md:flex space-x-8 font-cta text-lg text-accent">
+      <li><a href="#about" class="hover:text-primary transition">About</a></li>
+      <li><a href="#why" class="hover:text-primary transition">Why Choose Us</a></li>
+      <li><a href="#services" class="hover:text-primary transition">Services</a></li>
+      <li><a href="#portfolio" class="hover:text-primary transition">Portfolio</a></li>
+      <li><a href="#reviews" class="hover:text-primary transition">Reviews</a></li>
+      <li><a href="#contact" class="hover:text-primary transition">Book</a></li>
+    </ul>
+    <div class="md:hidden flex items-center">
+      <button id="menu-btn" class="focus:outline-none" aria-label="Open menu">
+        <div class="space-y-1">
+          <span class="block w-6 h-0.5 bg-accent"></span>
+          <span class="block w-6 h-0.5 bg-accent"></span>
+          <span class="block w-6 h-0.5 bg-accent"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Sidebar Menu -->
+<div id="mobileMenu" class="fixed top-0 right-0 w-64 h-full bg-secondary transform translate-x-full transition-transform duration-300 md:hidden z-50 shadow-lg">
+  <div class="flex justify-between items-center px-6 py-4 border-b border-gray-700">
+    <h2 class="font-heading text-xl font-bold text-accent">Menu</h2>
+    <button id="close-btn" class="focus:outline-none text-accent text-2xl">&times;</button>
+  </div>
+  <ul class="flex flex-col mt-6 space-y-6 font-cta text-lg px-6 text-accent">
+    <li><a href="#about" class="hover:text-primary transition">About</a></li>
+    <li><a href="#why" class="hover:text-primary transition">Why Choose Us</a></li>
+    <li><a href="#services" class="hover:text-primary transition">Services</a></li>
+    <li><a href="#portfolio" class="hover:text-primary transition">Portfolio</a></li>
+    <li><a href="#reviews" class="hover:text-primary transition">Reviews</a></li>
+    <li><a href="#contact" class="hover:text-primary transition">Book</a></li>
+  </ul>
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50){ navbar.classList.add('bg-secondary','shadow-md'); }
+    else{ navbar.classList.remove('bg-secondary','shadow-md'); }
+  });
+
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeBtn = document.getElementById('close-btn');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+  closeBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+</script>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-left flex items-center">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="vid.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="hero-content fade-in-up delay-200 text-accent mt-32">
+      <h1 class="text-4xl md:text-6xl font-heading mb-4">Luxury Tailoring — Crafted for You</h1>
+      <p class="mb-6 text-lg md:text-xl">Bespoke bridal, traditional & kids wear — premium fabrics, expert finish.</p>
+      <a href="https://wa.me/+2348118150426" target="_blank"
+         class="bg-primary hover:bg-highlight text-accent font-cta font-bold py-3 px-6 rounded-full text-lg transition transform hover:scale-105">
+         Book via WhatsApp
+      </a>
+    </div>
+  </div>
+  <div class="hero-right hidden md:block">
+    <img src="images/pic.jpg" alt="Tidi's Fashion model portrait" class="hero-img">
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="py-20 bg-accent text-secondary fade-in-up delay-200">
+  <div class="container mx-auto flex flex-col md:flex-row items-center px-6 md:px-0">
+    <div class="md:w-1/2 mb-8 md:mb-0">
+      <img src="assets/images/sister.jpg" alt="Tidi" class="rounded-xl shadow-lg transform transition hover:scale-105">
+    </div>
+    <div class="md:w-1/2 md:pl-12">
+      <h2 class="text-4xl font-heading mb-4">Meet Tidis CEO</h2>
+      <p class="mb-4">Tidi’s Fashion crafts exquisite, custom-made garments for women and children, blending traditional techniques with modern luxury.</p>
+      <p>Specialties: Bridal couture, African traditional, corporate elegance & kids fashion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US SECTION -->
+<section id="why" class="py-20 bg-[#f8f8f8] text-secondary fade-in-up delay-400">
+  <div class="container mx-auto px-6 md:px-0 text-center">
+    <h2 class="text-4xl font-heading mb-12">Why Choose Us</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-6 bg-accent rounded-xl shadow transform transition hover:scale-105">
+        <h3 class="text-2xl font-heading mb-2">Premium Quality</h3>
+        <p>We use only the finest fabrics and craftsmanship for perfect results.</p>
+      </div>
+      <div class="p-6 bg-accent rounded-xl shadow transform transition hover:scale-105">
+        <h3 class="text-2xl font-heading mb-2">Custom Fit</h3>
+        <p>Every design is tailored to your measurements for comfort and elegance.</p>
+      </div>
+      <div class="p-6 bg-accent rounded-xl shadow transform transition hover:scale-105">
+        <h3 class="text-2xl font-heading mb-2">Exceptional Service</h3>
+        <p>Our team ensures a smooth experience from consultation to delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section id="services" class="py-20 bg-accent text-secondary fade-in-up delay-400">
+  <div class="container mx-auto px-6 md:px-0 text-center">
+    <h2 class="text-4xl font-heading mb-12">Our Services</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-6 bg-[#f8f8f8] rounded-xl shadow transform transition hover:scale-105 hover:shadow-lg">
+        <h3 class="text-2xl font-heading mb-2">Bridal Wear</h3>
+        <p>Custom bridal gowns made with luxury fabrics and couture finishes.</p>
+      </div>
+      <div class="p-6 bg-[#f8f8f8] rounded-xl shadow transform transition hover:scale-105 hover:shadow-lg">
+        <h3 class="text-2xl font-heading mb-2">Traditional Attire</h3>
+        <p>Handcrafted ankara & lace designs for any ceremony.</p>
+      </div>
+      <div class="p-6 bg-[#f8f8f8] rounded-xl shadow transform transition hover:scale-105 hover:shadow-lg">
+        <h3 class="text-2xl font-heading mb-2">Corporate & Kids Wear</h3>
+        <p>Stylish corporate looks and adorable, comfortable kids designs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO SECTION -->
+<section id="portfolio" class="py-20 bg-[#f0f0f0] text-secondary fade-in-up delay-400">
+  <div class="container mx-auto px-6 md:px-0 text-center">
+    <h2 class="text-4xl font-heading mb-12">Portfolio</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <img src="assets/images/portfolio1.jpg" alt="Portfolio 1" class="rounded-xl shadow-lg transform transition hover:scale-105">
+      <img src="assets/images/portfolio2.jpg" alt="Portfolio 2" class="rounded-xl shadow-lg transform transition hover:scale-105">
+      <img src="assets/images/portfolio3.jpg" alt="Portfolio 3" class="rounded-xl shadow-lg transform transition hover:scale-105">
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS SECTION -->
+<section id="reviews" class="py-20 bg-[#f8f8f8] text-secondary fade-in-up">
+  <div class="container mx-auto px-6 md:px-0 text-center">
+    <h2 class="text-4xl font-heading mb-12">What Our Clients Say</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-6 bg-accent rounded-xl shadow-lg transform transition hover:scale-105">
+        <p class="italic mb-4">"Tidi's Fashion made my bridal dress exactly how I imagined. The quality is unmatched!"</p>
+        <h3 class="font-heading font-bold text-lg">– Ada O.</h3>
+      </div>
+      <div class="p-6 bg-accent rounded-xl shadow-lg transform transition hover:scale-105">
+        <p class="italic mb-4">"Perfect fit and lovely finish — my daughter loved her outfit."</p>
+        <h3 class="font-heading font-bold text-lg">– Chioma N.</h3>
+      </div>
+      <div class="p-6 bg-accent rounded-xl shadow-lg transform transition hover:scale-105">
+        <p class="italic mb-4">"Bespoke, luxurious and comfortable. Highly recommended."</p>
+        <h3 class="font-heading font-bold text-lg">– Funke A.</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="py-20 bg-primary text-accent text-center fade-in-up">
+  <h2 class="text-4xl font-heading mb-6">Ready to Elevate Your Style?</h2>
+  <a href="https://wa.me/+2348118150426" target="_blank"
+     class="bg-accent hover:bg-highlight text-primary font-cta font-bold py-3 px-6 rounded-full text-lg transition duration-300">Book via WhatsApp</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-12 bg-secondary text-accent text-center fade-in-up">
+  <p>© <span id="year"></span> Tidis Fashion. All Rights Reserved.</p>
+  <p>Follow us on
+    <a href="https://www.instagram.com/tidis_fashion" class="text-primary hover:text-highlight">Instagram</a> |
+    <a href="https://www.tiktok.com/@tidis_fashion" class="text-primary hover:text-highlight">TikTok</a>
+  </p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
